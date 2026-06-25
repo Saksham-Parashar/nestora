@@ -37,7 +37,7 @@ function Navbar() {
           <div className="hidden md:flex items-center gap-8 font-semibold text-sm">
             <Link
               to="/"
-              className={`relative py-2 transition-colors duration-350 ${
+              className={`relative py-2 transition-colors duration-300 ${
                 isActive("/")
                   ? "text-rose-500 font-bold"
                   : "text-slate-600 hover:text-rose-500"
@@ -51,7 +51,7 @@ function Navbar() {
 
             <Link
               to="/wishlist"
-              className={`relative py-2 transition-colors duration-350 ${
+              className={`relative py-2 transition-colors duration-300 ${
                 isActive("/wishlist")
                   ? "text-rose-500 font-bold"
                   : "text-slate-600 hover:text-rose-500"
@@ -66,7 +66,7 @@ function Navbar() {
 
           {/* User Options */}
           <div className="hidden md:flex items-center gap-4">
-            <span className="text-xs font-bold text-slate-600 hover:bg-slate-50 px-3 py-2 rounded-full transition-colors duration-250 cursor-pointer">
+            <span className="text-xs font-bold text-slate-600 hover:bg-slate-50 px-3 py-2 rounded-full transition-colors duration-300 cursor-pointer">
               Nestora your home
             </span>
             <div className="flex items-center gap-3 border border-slate-200 rounded-full p-2 pl-3 hover:shadow-md transition-shadow duration-300 cursor-pointer bg-white">

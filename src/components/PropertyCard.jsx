@@ -1,24 +1,33 @@
 import { Link } from "react-router-dom";
 
-function PropertyCard({ property }) {
+function PropertyCard({ property, showRemoveButton = false, onRemove }) {
+  const handleRemove = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (onRemove) {
+      onRemove(property.id);
+    }
+  };
+
   return (
     <Link to={`/property/${property.id}`} className="group block">
       <div className="flex flex-col gap-3 rounded-2xl border border-slate-100 bg-white p-3 shadow-sm hover:shadow-xl hover:border-slate-200/60 transition-all duration-300 cursor-pointer">
-        {/* Image Container */}
+        {/* Image */}
         <div className="relative overflow-hidden aspect-[4/3] rounded-xl bg-slate-50">
           <img
             src={property.image}
             alt={property.title}
-            className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
 
-          {/* Rating Badge */}
-          <div className="absolute top-3 right-3 z-10 flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-slate-850 text-xs font-bold shadow-md">
+          {/* Rating */}
+          <div className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-xs font-bold text-slate-900 shadow-md backdrop-blur-sm">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="w-3.5 h-3.5 text-amber-500"
+              className="h-3.5 w-3.5 text-amber-500"
             >
               <path
                 fillRule="evenodd"
@@ -26,44 +35,38 @@ function PropertyCard({ property }) {
                 clipRule="evenodd"
               />
             </svg>
-            <span>{property.rating || "4.9"}</span>
+
+            {property.rating}
           </div>
         </div>
 
-        {/* Details Container */}
+        {/* Details */}
         <div className="px-1 pb-1">
-          <div className="flex flex-col gap-1">
-            {/* Title */}
-            <h2 className="text-base font-bold text-slate-850 line-clamp-1 group-hover:text-rose-500 transition-colors duration-200">
-              {property.title}
-            </h2>
+          <h2 className="line-clamp-1 text-base font-bold text-slate-900 transition-colors group-hover:text-rose-500">
+            {property.title}
+          </h2>
 
-            {/* Location */}
-            <p className="text-xs font-medium text-slate-500 flex items-center gap-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-3.5 h-3.5 text-slate-400"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              {property.location}
-            </p>
+          <p className="mt-1 flex items-center gap-1 text-xs font-medium text-slate-500">
+            📍 {property.location}
+          </p>
 
-            {/* Price / Night */}
-            <div className="mt-2 pt-2 border-t border-slate-50 flex items-baseline gap-1">
+          <div className="mt-2 flex items-center justify-between border-t border-slate-100 pt-2">
+            <div>
               <span className="text-lg font-extrabold text-rose-500">
-                ₹{property.price}
+                ₹{Number(property.price).toLocaleString("en-IN")}
               </span>
-              <span className="text-xs font-medium text-slate-500">
-                / night
-              </span>
+
+              <span className="ml-1 text-xs text-slate-500">/ night</span>
             </div>
+
+            {showRemoveButton && (
+              <button
+                onClick={handleRemove}
+                className="rounded-lg bg-red-50 px-3 py-1 text-xs font-bold text-red-600 transition hover:bg-red-100"
+              >
+                Remove
+              </button>
+            )}
           </div>
         </div>
       </div>
