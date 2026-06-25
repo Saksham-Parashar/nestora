@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import properties from "../data/properties";
+import properties from "../data/temp";
 import { addToWishlist } from "../utils/wishlist";
 
 function PropertyDetails() {
