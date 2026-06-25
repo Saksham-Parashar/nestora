@@ -38,13 +38,13 @@ The project demonstrates component-based architecture, client-side routing, resp
 
 ## 📸 Preview
 
-> *(Project screenshot will be added after deployment.)*
+![Nestora Screenshot](assets/screenshot.png)
 
 ---
 
 ## 🌐 Live Demo
 
-> *(Will be added after deployment.)*
+🔗 https://nestora-fawn.vercel.app/
 
 ---
 
